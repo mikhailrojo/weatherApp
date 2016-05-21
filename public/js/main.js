@@ -1,22 +1,16 @@
-angular.module('weatherApp', [])
+angular.module('weatherApp', ['ngCookies'])
 	.config(function($interpolateProvider){
 		$interpolateProvider.startSymbol('[[');
 		$interpolateProvider.endSymbol(']]');
 			
 	})
-	.controller('weatherCtrl', function(geo, $scope, $http){
-		console.log('контроллер');	
-		var result;
-			if("geolocation" in navigator){
-				navigator.geolocation.getCurrentPosition(function(position){
-
-					var longitude = position.coords.longitude;
-					var latitude = position.coords.latitude;
+	.controller('weatherCtrl', function(geo, $scope, $http, $cookies){
+		var positionStored = $cookies.getObject('weather') || null;
+			console.log(positionStored);
+			if(!positionStored){
+				
 					var id =  '&lang=ru&units=metric&APPID=ee7b44dbcbd8e281e70c9fd015b08a00';
-					//var query = "http://api.openweathermap.org/data/2.5/weather?lat="+latitude+"&lon="+longitude + id;
 					var query = "http://ip-api.com/json/?fields=country,city";
-					
-					
 					$http.get(query)
 						.then(function(res){
 							console.log(res.data.city, "все гуд");
@@ -25,7 +19,10 @@ angular.module('weatherApp', [])
 							var weatherQuery = "http://api.openweathermap.org/data/2.5/weather?q="+ res.data.city  + "," + res.data.country+ id;
 							$http.get(weatherQuery)
 								.then(function(res){
+										console.log("сделали запрос на сервер");
 										console.log(res.data);
+										var expiryDate =  new Date(new Date().valueOf() + 1000*60*5)
+										$cookies.putObject('weather', res.data, {expires: expiryDate });
 										$scope.mi = res.data;
 										
 								}, function(res){
@@ -36,13 +33,14 @@ angular.module('weatherApp', [])
 							console.log(res, "ошибка");
 						})
 					
-				});
+				
 			} else{
-				console.log('гео нет');
+				$scope.mi = positionStored;
+				console.log("Информацию о погоде берем из кукисов");
 			}
 
 	
-})
+	})
 	.factory('geo', function($http){
 		
 		return function(){
