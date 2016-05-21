@@ -1,0 +1,31 @@
+<aside ng-cloak ng-show="mi">
+	<p class="cross">X</p>
+    <h3 ng-cloak>[[mi.name]]<br>[[mi.sys.country]]</h3>
+    <p style="font-size: 2em;"><img ng-src="http://openweathermap.org/img/w/[[mi.weather[0].icon]].png">
+    [[mi.main.temp_max - mi.main.temp_min | number : 1]]  &deg;C</p>
+    <table>
+        <tbody>
+        	<tr>
+	            <td>Сейчас: </td>
+	            <td>[[mi.weather[0].description]]</td>
+            </tr>
+            <tr>
+	            <td>Ветер: </td>
+	            <td>[[mi.wind.speed]] м/с</td>
+            </tr>
+            <tr>
+	            <td>Давление: </td>
+	            <td>[[mi.main.pressure]] мм рт. ст.</td>
+            </tr>
+            <tr>
+	            <td>Влажность: &nbsp;</td>
+	            <td>[[mi.main.humidity]] %</td>
+            </tr>
+            <tr>
+	            <td>Коодинаты: &nbsp;</td>
+	            <td> [[mi.coord.lon]] х [[mi.coord.lat]]</td>
+            </tr>
+        </tbody>
+    </table>
+</aside>
+        

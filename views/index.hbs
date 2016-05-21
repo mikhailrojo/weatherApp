@@ -1,65 +1,38 @@
 <div class="header-container">
     <header class="wrapper clearfix">
         <h1 class="title">Погода в вашем городе <img ng-src="http://openweathermap.org/img/w/[[mi.weather[0].icon]].png"></h1>
-        <nav>
-            <ul>
-                <li><a href="#">[[1+3]]</a></li>
-                <li><a href="#" ng-bind="1+3"></a></li>
-                <li><a href="#">nav ul li a</a></li>
-            </ul>
-        </nav>
     </header>
 </div>
 
 <div class="main-container">
+	
     <div class="main wrapper clearfix">
+    <div class="row">
+    <div class="mainAside col-md-3 clearfix"><city-weather city="Saint Petersburg"></city-weather></div>
         <article>
             <header>
                 <h1>{{title}}</h1>
                 <p>Информация о текущей погоде</p>
                  <p></p>
+                 <form ng-submit="findWeather(chosenCity)">
+	                 <div class="input-group" >
+	                 	<input type="text" class="form-control" placeholder="Введите город" ng-model="chosenCity">
+	                 	<span class="input-group-btn">
+		                 	<input class="btn btn-default" type="button" ng-click="findWeather(chosenCity)" value="Найти">
+		                </span>
+	                 </div>
+                 <form>
             </header>
             <section>
          </article>
-
-        <aside ng-cloak ng-show="mi">
-            <h3 ng-cloak>[[mi.name]] [[mi.sys.country]]</h3>
-            <p><img ng-src="http://openweathermap.org/img/w/[[mi.weather[0].icon]].png">
-            [[mi.main.temp_min - mi.main.max]]  &deg;C</p>
-            <table>
-	            <tbody>
-	            	<tr>
-			            <td>Температура: </td>
-			            <td>[[mi.main.temp_min]] - [[mi.main.temp_max]] &deg;C</td>
-		            </tr>
-	            	<tr>
-			            <td>Сейчас: </td>
-			            <td>[[mi.weather[0].description]]</td>
-		            </tr>
-		            <tr>
-			            <td>Ветер: </td>
-			            <td>[[mi.wind.speed]] м/с</td>
-		            </tr>
-		            <tr>
-			            <td>Облачность: </td>
-			            <td>[[mi.weather[1].description]]</td>
-		            </tr>
-		            <tr>
-			            <td>Давление: </td>
-			            <td>[[mi.main.pressure]] мм рт. ст.</td>
-		            </tr>
-		            <tr>
-			            <td>Влажность: </td>
-			            <td>[[mi.main.humidity]] %</td>
-		            </tr>
-		            <tr>
-			            <td>Коодинаты: </td>
-			            <td>[[mi.coord.lon]] х [[mi.coord.lat]]</td>
-		            </tr>
-	            </tbody>
-            </table>
-        </aside>
-
+       <div class="col-md-9 col-sm-4   clearfix">
+         	<city-weather ng-repeat="p in panels track by $index" city="[[p]]" class="newPanels"></city-weather> 
+       </div>
+   </div>
+         
+         
+        
+         <!-- <article><city-weather></city-weather></article> -->
     </div> <!-- #main -->
 </div> <!-- #main-container -->
 

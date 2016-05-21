@@ -1,3 +1,18 @@
+form {
+	margin-bottom: 15px;
+}
+
+.newPanels aside {
+	position: relative;
+}
+p.cross {
+	position: absolute;
+	right: 3px;
+	top: -21px;
+	cursor: pointer;
+}
+
+
 /*! HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
 
 html {
@@ -237,14 +252,15 @@ nav a:hover {
     WIDE: Main
    ============ */
 
-    .main article {
-        float: left;
-        width: 57%;
-    }
-
-    .main aside {
+    .main .mainAside {
         float: right;
-        width: 28%;
+            }
+
+    .main .newPanels{
+        float: left;
+        width: 230px;
+        margin: 0 5px 5px 0;
+      
     }
 }
 
