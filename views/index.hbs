@@ -12,7 +12,7 @@
         <article>
             <header>
                 <h1>{{title}}</h1>
-                <p>Информация о текущей погоде</p>
+                <p>Информация о текущей погоде [[misha.age]]</p>
                  <p></p>
                  <form ng-submit="findWeather(chosenCity)">
 	                 <div class="input-group" >
@@ -26,7 +26,7 @@
             <section>
          </article>
        <div class="col-md-9 col-sm-4   clearfix">
-         	<city-weather ng-repeat="p in panels track by $index" city="[[p]]" class="newPanels"></city-weather> 
+       		<city-weather ng-repeat="p in panels track by $index" city="[[p]]" class="newPanels"></city-weather>
        </div>
    </div>
          

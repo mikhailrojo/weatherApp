@@ -1,3 +1,17 @@
+.cssHide {
+  opacity: 1;
+}
+
+.cssHide
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.cssHide.ng-hide {
+  opacity:0;
+}
+
+
 form {
 	margin-bottom: 15px;
 }
@@ -258,7 +272,7 @@ nav a:hover {
 
     .main .newPanels{
         float: left;
-        width: 230px;
+        width: 245px;
         margin: 0 5px 5px 0;
       
     }

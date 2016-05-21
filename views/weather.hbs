@@ -1,4 +1,5 @@
-<aside ng-cloak ng-show="mi">
+
+<aside ng-cloak ng-show="mi" ng-class="cssHide" >
 	<p class="cross">X</p>
     <h3 ng-cloak>[[mi.name]]<br>[[mi.sys.country]]</h3>
     <p style="font-size: 2em;"><img ng-src="http://openweathermap.org/img/w/[[mi.weather[0].icon]].png">
@@ -28,4 +29,5 @@
         </tbody>
     </table>
 </aside>
+
         
