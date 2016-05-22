@@ -3,18 +3,19 @@ angular.module('weatherApp', ['ngCookies'])
 		$interpolateProvider.startSymbol('[[');
 		$interpolateProvider.endSymbol(']]');
 	})
-	.controller('weatherCtrl', function($scope, $cookies){
+	.controller('weatherCtrl', ['$scope', '$cookies', 'toTranslit', function($scope, $cookies, toTranslit){
 		$scope.panels = $cookies.getObject('previousQueries') || [];
 		var now = new Date();
 		var oneYearCookie = new Date(now.getFullYear()+2, now.getMonth(), now.getDay());
 		$scope.findWeather = function(chosenCity){
-			
 			$scope.panels = $cookies.getObject('previousQueries') || [];
-			$scope.panels.push(chosenCity.name);
+			chosenCity = toTranslit(chosenCity);
+			$scope.panels.push(chosenCity);
+			console.log($scope.panels);
 			$cookies.putObject('previousQueries', $scope.panels, { expires: oneYearCookie});
-			$scope.chosenCity.name = "";
+			$scope.chosenCity= "";
 		}
-	})
+	}])
 	
 	.directive("cityWeather", function($http, $cookies){
 		function link(scope, element, attr){
@@ -25,7 +26,7 @@ angular.module('weatherApp', ['ngCookies'])
 			
 			element.on("mousedown", function(e){
 				var cookiesArray = $cookies.getObject('previousQueries');	
-				if(e.target == cross ){
+				if(e.target == cross){
 					cookiesArray.splice(cookiesArray.indexOf(attr.city), 1);
 					$cookies.putObject('previousQueries', cookiesArray, { expires: oneYearCookie});
 					element.remove();
@@ -61,6 +62,25 @@ angular.module('weatherApp', ['ngCookies'])
 			templateUrl :'weather',
 			link: link
 		}
+	})
+	.factory("toTranslit", function(){
+	return function(text){
+		return text.replace(/([а-яё])|([\s_-])|([^a-z\d])/gi,
+	        function (all, ch, space, words, i) {
+	            if (space || words) {
+	                return space ? '-' : '';
+	            }
+	            var code = ch.charCodeAt(0),
+	                index = code == 1025 || code == 1105 ? 0 :
+	                    code > 1071 ? code - 1071 : code - 1039,
+	                t = ['yo', 'a', 'b', 'v', 'g', 'd', 'e', 'zh',
+	                    'z', 'i', 'y', 'k', 'l', 'm', 'n', 'o', 'p',
+	                    'r', 's', 't', 'u', 'f', 'h', 'c', 'ch', 'sh',
+	                    'shch', '', 'y', '', 'e', 'yu', 'ya'
+	                ]; 
+	            return t[index];
+	        });
+	    }
 	})
 
 

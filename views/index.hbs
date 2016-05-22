@@ -22,11 +22,11 @@
                 <p>Справа отображается погода определяемая по вашему ip адресу.</p>
                 <p>В поле ввода вы можете ввести город(русскими или латинскими буквами), погоду  любого города России. Выбранные города сохраняться при следующем посещении сайта.</p>
                 <p></p>
-                 <form name="cityFindForm">
+                 <form name="cityFindForm" ng-submit="findWeather(chosenCity)">
 	                 <div class="input-group" >
-	                 	<input type="text" class="form-control" placeholder="Введите город" ng-model="chosenCity.name" required minlength="3">
+	                 	<input type="text" class="form-control" placeholder="Введите город" ng-model="chosenCity" required minlength="3">
 	                 	<span class="input-group-btn">
-		                 	<input class="btn btn-default" type="button" ng-click="findWeather(chosenCity.name)" value="Найти" ng-disabled="cityFindForm.$invalid">
+		                 	<input class="btn btn-default" type="button" ng-click="findWeather(chosenCity)" value="Найти" ng-disabled="cityFindForm.$invalid">
 		                </span>
 	                 </div>
                  <form>
@@ -47,7 +47,7 @@
 <div class="footer-container">
     <footer class="wrapper">
         <h3>2016 <a class="copyright" href="https://spb.hh.ru/resume/f47f6faeff03065f870039ed1f6e6e4844356d"> &copy</a> Степанов Михаил</h3>
-        <p>* Серверная часть:(Node + Express)/ Клиентская: Angular.js, каждый виджет - синглтон директива оборажающаяся через ng-repeat.</p>
-        <p>* Запрос погоды делается к сайту http://api.openweathermap.org через REST APIсервис Ангуляра $http. Результат запроса к каждому городу кешируются на 5 минут в $сookies.</p>
+        <p>* Серверная часть:(Node + Express)/ Клиентская: Angular.js, каждый виджет - синглтон директива отображающаяся через ng-repeat.</p>
+        <p>* Запрос погоды делается к сайту http://api.openweathermap.org через REST APIсервис Express. Результат запроса к каждому городу кешируются на 5 минут в $сookies.</p>
     </footer>
 </div>
