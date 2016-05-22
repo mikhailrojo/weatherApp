@@ -43,7 +43,7 @@ angular.module('weatherApp', ['ngCookies', 'ngAnimate'])
 			var positionStored = $cookies.getObject(attr.city) || null;
 			if(!positionStored){
 					var id =  '&lang=ru&units=metric&APPID=ee7b44dbcbd8e281e70c9fd015b08a00';
-					var query = "http://ip-api.com/json/?fields=country,city";
+					var query = "http://www.ip-api.com/json/?fields=country,city";
 					$http.get(query)
 						.then(function(res){
 							var city = attr.city || res.data.city;
