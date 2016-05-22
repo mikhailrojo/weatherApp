@@ -8,10 +8,11 @@ angular.module('weatherApp', ['ngCookies', 'ngAnimate'])
 		var now = new Date();
 		var oneYearCookie = new Date(now.getFullYear()+2, now.getMonth(), now.getDay());
 		$scope.findWeather = function(chosenCity){
+			
 			$scope.panels = $cookies.getObject('previousQueries') || [];
-			$scope.panels.push(chosenCity);
+			$scope.panels.push(chosenCity.name);
 			$cookies.putObject('previousQueries', $scope.panels, { expires: oneYearCookie});
-			console.log($scope.panels);
+			$scope.chosenCity.name = "";
 		}
 	})
 	
@@ -25,11 +26,14 @@ angular.module('weatherApp', ['ngCookies', 'ngAnimate'])
 			var oneYearCookie = new Date(now.getFullYear()+2, now.getMonth(), now.getDay());
 			
 			element.on("mousedown", function(e){
-					
-				console.log(cookiesArray)
+				var cookiesArray = $cookies.getObject('previousQueries');	
+				console.log(cookiesArray);
+				
 				
 				if(e.target == cross ){
+					console.log(cookiesArray);
 					cookiesArray.splice(cookiesArray.indexOf(attr.city), 1);
+					console.log(cookiesArray);
 					$cookies.putObject('previousQueries', cookiesArray, { expires: oneYearCookie});
 					element.remove();
 					console.log(cookiesArray);

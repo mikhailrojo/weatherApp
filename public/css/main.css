@@ -1,3 +1,15 @@
+a.copyright{
+	color: #EEE;
+}
+
+a.copyright:hover{
+	color: #FFF;
+	text-decoration: none;
+}
+
+.hideIt{
+	visibility: hidden;
+}
 .cssHide {
   opacity: 1;
 }
@@ -182,12 +194,16 @@ nav a:hover {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+@media only screen and (max-width: 871px) {
+
+	.header-container nav{
+   		display: none;
+   	
+   	}
 
 
 
-
-
-
+}
 
 
 
@@ -283,7 +299,9 @@ nav a:hover {
 /* ===============
     Maximal Width
    =============== */
-
+   
+   
+   
     .wrapper {
         width: 1026px; /* 1140px - 10% for margins */
         margin: 0 auto;

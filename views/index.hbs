@@ -1,6 +1,13 @@
 <div class="header-container">
     <header class="wrapper clearfix">
         <h1 class="title">Погода в вашем городе <img ng-src="http://openweathermap.org/img/w/[[mi.weather[0].icon]].png"></h1>
+         <nav>
+            <ul>
+                <li class="hideIt"><a></a></li>
+                <li ><a href="https://github.com/mikhailrojo/weatherApp"><img src="/img/github.png" width="40"></a></li>
+                <li><a href="https://spb.hh.ru/resume/f47f6faeff03065f870039ed1f6e6e4844356d">Вернуться к резюме</a></li>
+            </ul>
+        </nav>
     </header>
 </div>
 
@@ -11,14 +18,15 @@
     <div class="mainAside col-md-3 clearfix"><city-weather city="Saint Petersburg"></city-weather></div>
         <article>
             <header>
-                <h1>{{title}}</h1>
-                <p>Информация о текущей погоде [[misha.age]]</p>
-                 <p></p>
-                 <form ng-submit="findWeather(chosenCity)">
+                <h1>Текущая погода в городах России</h1>
+                <p>Справа отображается погода определяемая по вашему ip адресу.</p>
+                <p>В поле ввода вы можете ввести город(русскими или латинскими буквами), погоду  любого города России. Выбранные города сохраняться при следующем посещении сайта.</p>
+                <p></p>
+                 <form name="cityFindForm">
 	                 <div class="input-group" >
-	                 	<input type="text" class="form-control" placeholder="Введите город" ng-model="chosenCity">
+	                 	<input type="text" class="form-control" placeholder="Введите город" ng-model="chosenCity.name" required minlength="3">
 	                 	<span class="input-group-btn">
-		                 	<input class="btn btn-default" type="button" ng-click="findWeather(chosenCity)" value="Найти">
+		                 	<input class="btn btn-default" type="button" ng-click="findWeather(chosenCity.name)" value="Найти" ng-disabled="cityFindForm.$invalid">
 		                </span>
 	                 </div>
                  <form>
@@ -38,6 +46,8 @@
 
 <div class="footer-container">
     <footer class="wrapper">
-        <h3>footer</h3>
+        <h3>2016 <a class="copyright" href="https://spb.hh.ru/resume/f47f6faeff03065f870039ed1f6e6e4844356d"> &copy</a> Степанов Михаил</h3>
+        <p>* Серверная часть:(Node + Express)/ Клиентская: Angular.js, каждый виджет - синглтон директива оборажающаяся через ng-repeat.</p>
+        <p>* Запрос погоды делается к сайту http://api.openweathermap.org через REST APIсервис Ангуляра $http. Результат запроса к каждому городу кешируются на 5 минут в $сookies.</p>
     </footer>
 </div>
