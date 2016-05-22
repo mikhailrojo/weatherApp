@@ -12,20 +12,37 @@ router.get('/', function(req, response, next) {
     var queryString = "http://ip-api.com/json/" + ip; 
     
     
-http.get(queryString, function(res){
-	res.on("data", function(data){
-		console.log(data);
-		response.send(data.toString());
+	http.get(queryString, function(res){
+		res.on("data", function(data){
+			response.send(data.toString());
+		});
+		res.resume()
+		}).on('error', function(err){
+			console.log(err);
+			response.json(data);
 	});
-	res.resume()
-}).on('error', function(err){
-	console.log(err);
-	response.json(data);
 });
 
-
-
-
+router.get('/:city', function(req, response, next){
+	console.log(req.params.city);
+	var city = req.params.city;
+	var id =  '&lang=ru&units=metric&APPID=ee7b44dbcbd8e281e70c9fd015b08a00';
+	var queryString = "http://api.openweathermap.org/data/2.5/weather?q="+ city  + ",russia" + id;
+	console.log(queryString);
+	
+	http.get(queryString, function(res){
+		res.on("data", function(data){
+			console.log(data);
+			response.send(data.toString());
+		});
+		res.resume()
+		}).on('error', function(err){
+			console.log(err);
+			response.json(data);
+	});
+	
+	
+	
 });
 
 module.exports = router;
