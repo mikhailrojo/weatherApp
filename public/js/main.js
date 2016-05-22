@@ -58,7 +58,7 @@ angular.module('weatherApp', ['ngCookies', 'ngAnimate'])
 									console.log(res, "ошибка");
 								});
 							
-						},function(){
+						},function(res){
 							console.log(res, "ошибка");
 						})
 					
