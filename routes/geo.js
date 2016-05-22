@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
      			req.connection.remoteAddress || 
      			req.socket.remoteAddress ||
      			req.connection.socket.remoteAddress;
-    var = queryString = "http://ip-api.com/json/" + ip; 
+    var queryString = "http://ip-api.com/json/" + ip; 
     
     
 http.get(queryString, function(res){
@@ -21,7 +21,7 @@ http.get(queryString, function(res){
 }).on('error', function(err){
 	console.log(err);
 	res.json(data);
-})'
+});
 
 
 
