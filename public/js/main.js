@@ -11,7 +11,6 @@ angular.module('weatherApp', ['ngCookies'])
 			$scope.panels = $cookies.getObject('previousQueries') || [];
 			chosenCity = toTranslit(chosenCity);
 			$scope.panels.push(chosenCity);
-			console.log($scope.panels);
 			$cookies.putObject('previousQueries', $scope.panels, { expires: oneYearCookie});
 			$scope.chosenCity= "";
 		}

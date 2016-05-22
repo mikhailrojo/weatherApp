@@ -24,12 +24,10 @@ router.get('/', function(req, response, next) {
 });
 
 router.get('/:city', function(req, response, next){
-	console.log(req.params.city.slice(1));
+
 	var city = req.params.city.slice(1);
 	var id =  '&lang=ru&units=metric&APPID=ee7b44dbcbd8e281e70c9fd015b08a00';
 	var queryString = "http://api.openweathermap.org/data/2.5/weather?q="+ city  + ",russia" + id;
-	console.log(queryString);
-	
 	http.get(queryString, function(res){
 		res.on("data", function(data){
 			response.send(data.toString());
@@ -38,9 +36,6 @@ router.get('/:city', function(req, response, next){
 		}).on('error', function(err){
 			console.log(err);
 	});
-	
-	
-	
 });
 
 module.exports = router;
