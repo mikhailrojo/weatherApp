@@ -3,7 +3,7 @@ var router = express.Router();
 var http = require('http');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, response, next) {
 
 	var ip = 	req.headers['x-forwarded-for'] || 
      			req.connection.remoteAddress || 
@@ -15,12 +15,12 @@ router.get('/', function(req, res, next) {
 http.get(queryString, function(res){
 	res.on("data", function(data){
 		console.log(data);
-		res.json(data);
+		response.send(data.toString());
 	});
 	res.resume()
 }).on('error', function(err){
 	console.log(err);
-	res.json(data);
+	response.json(data);
 });
 
 
