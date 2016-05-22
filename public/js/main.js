@@ -1,4 +1,4 @@
-angular.module('weatherApp', ['ngCookies', 'ngAnimate'])
+angular.module('weatherApp', ['ngCookies'])
 	.config(function($interpolateProvider){
 		$interpolateProvider.startSymbol('[[');
 		$interpolateProvider.endSymbol(']]');
